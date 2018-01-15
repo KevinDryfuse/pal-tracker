@@ -1,0 +1,29 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "1.5.4.RELEASE"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // compile("org.springframework.boot:spring-boot-starter-web")
+
+    // include individual dependencies of org.springframework.boot:spring-boot-starter-web
+    compile ("com.fasterxml.jackson.core:jackson-databind:2.8.9",
+            "org.hibernate:hibernate-validator:5.3.5.Final" ,
+            "org.springframework:spring-web" ,
+            "org.springframework:spring-webmvc" ,
+            "org.springframework:spring-core:4.3.10.RELEASE" ,
+            "org.springframework.boot:spring-boot:1.5.6.RELEASE" ,
+            "org.springframework.boot:spring-boot-autoconfigure:1.5.6.RELEASE" ,
+            "ch.qos.logback:logback-classic:1.1.11" ,
+            "org.slf4j:jcl-over-slf4j:1.7.25" ,
+            "org.slf4j:log4j-over-slf4j:1.7.25" ,
+            "org.slf4j:jul-to-slf4j:1.7.25" ,
+            "org.apache.tomcat.embed:tomcat-embed-core:8.5.16" ,
+            "org.apache.tomcat.embed:tomcat-embed-el:8.5.16" ,
+            "org.apache.tomcat.embed:tomcat-embed-websocket:8.5.16"
+    )
+}
