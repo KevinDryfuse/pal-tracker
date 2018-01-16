@@ -33,7 +33,8 @@ dependencies {
             "org.slf4j:jul-to-slf4j:1.7.25" ,
             "org.apache.tomcat.embed:tomcat-embed-core:8.5.16" ,
             "org.apache.tomcat.embed:tomcat-embed-el:8.5.16" ,
-            "org.apache.tomcat.embed:tomcat-embed-websocket:8.5.16"
+            "org.apache.tomcat.embed:tomcat-embed-websocket:8.5.16",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1"
     )
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
