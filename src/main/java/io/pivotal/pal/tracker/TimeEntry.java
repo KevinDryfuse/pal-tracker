@@ -14,7 +14,7 @@ public class TimeEntry {
     public TimeEntry() {
     }
 
-    public TimeEntry(long id, int projectId, int userId, LocalDate parse, int hours) {
+    public TimeEntry(long id, long projectId, long userId, LocalDate parse, int hours) {
         this.id = id;
         this.projectId = projectId;
         this.hours = hours;
@@ -22,7 +22,7 @@ public class TimeEntry {
         this.userId = userId;
     }
 
-    public TimeEntry(int projectId, int userId, LocalDate parse, int hours) {
+    public TimeEntry(long projectId, long userId, LocalDate parse, int hours) {
         this.userId = userId;
         this.projectId = projectId;
         this.hours = hours;

@@ -1,6 +1,9 @@
+import org.flywaydb.gradle.task.FlywayMigrateTask
+
 plugins {
     id "java"
     id "org.springframework.boot" version "1.5.4.RELEASE"
+    id "org.flywaydb.flyway" version "4.2.0"
 }
 
 repositories {
@@ -8,13 +11,28 @@ repositories {
     //mavenLocal()
 }
 
+def developmentDbUrl = "jdbc:mysql://localhost:3306/tracker_dev?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false"
 bootRun.environment([
         "WELCOME_MESSAGE": "hello",
+        "SPRING_DATASOURCE_URL": developmentDbUrl,
 ])
 
+def testDbUrl = "jdbc:mysql://localhost:3306/tracker_test?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false"
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
+        "SPRING_DATASOURCE_URL": testDbUrl,
 ])
+
+flyway {
+    url = developmentDbUrl
+    user = "tracker"
+    password = ""
+    locations = ["filesystem:databases/tracker/migrations"]
+}
+
+task testMigrate(type: FlywayMigrateTask) {
+    url = testDbUrl
+}
 
 dependencies {
     // compile("org.springframework.boot:spring-boot-starter-web")
@@ -34,7 +52,9 @@ dependencies {
             "org.apache.tomcat.embed:tomcat-embed-core:8.5.16" ,
             "org.apache.tomcat.embed:tomcat-embed-el:8.5.16" ,
             "org.apache.tomcat.embed:tomcat-embed-websocket:8.5.16",
-            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1"
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1",
+            "org.springframework.boot:spring-boot-starter-jdbc",
+            "mysql:mysql-connector-java:6.0.6"
     )
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
